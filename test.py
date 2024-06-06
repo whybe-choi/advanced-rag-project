@@ -1,11 +1,16 @@
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 import chromadb
 from llama_index.core import VectorStoreIndex, Settings
 from llama_index.core.retrievers import VectorIndexRetriever
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
+embed_model_path = "./models/bge-m3"
+
 # embedding model load
-embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-m3")
+embed_model = HuggingFaceEmbedding(model_name=embed_model_path)
 
 #기본 embedding model 변경
 Settings.embed_model = embed_model
