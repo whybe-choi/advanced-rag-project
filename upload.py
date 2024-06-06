@@ -4,9 +4,14 @@ from llama_index.core import VectorStoreIndex, StorageContext, Settings
 from llama_index.core.node_parser import SentenceSplitter
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from sentence_transformers import SentenceTransformer
+
+embed_model_path = "./models/bge-m3"
+model = SentenceTransformer("BAAI/bge-m3")
+model.save(embed_model_path)
 
 # embedding model load
-embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-m3")
+embed_model = HuggingFaceEmbedding(model_name=embed_model_path)
 
 #기본 embedding model 변경
 Settings.embed_model = embed_model
