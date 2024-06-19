@@ -1,7 +1,7 @@
-# advanced-rag-project
+# Dr.KHU : 의료 상담 챗봇 🤖
 
 <div align="center">
-Advanced Dr.KHU using llama-index 🦙
+Advanced Dr.KHU using LlamaIndex 🦙
 
 <img src="./images/demo.GIF" witdh="600" height="600">
 </div>
