@@ -4,13 +4,9 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 import chromadb
 import yaml
 from llama_index.core import VectorStoreIndex, PromptTemplate, Settings
-from llama_index.core.tools import QueryEngineTool, ToolMetadata
-from llama_index.core.query_engine import SubQuestionQueryEngine
 from llama_index.vector_stores.chroma import ChromaVectorStore
-from llama_index.llms.cohere import Cohere
 
 Settings.embed_model = "local:./models/bge-m3"
-Settings.llm = Cohere(temperature=0.3)
 
 def load_from_local(persist_path: str, collection_name: str) -> VectorStoreIndex:
     """Load Vector Index from local"""
