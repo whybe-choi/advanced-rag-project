@@ -1,4 +1,6 @@
 import streamlit as st
+from llms import get_response
+import time
 
 def init_streamlit():
     st.set_page_config(page_title="Dr.KHU🥼", page_icon="🩺")
@@ -16,6 +18,24 @@ def chat_main():
         st.session_state.messages.append({"role": "user", "content": message})
         with st.chat_message("user"):
             st.markdown(message)
+
+        response = get_response(message).response
+
+        with st.chat_message("assistant"):
+                with st.spinner("응답 중..."):
+                    message_placeholder = st.empty()
+                    full_response = ""
+                    for lines in response.split("\n"):
+                        for chunk in lines.split():
+                            full_response += chunk + " "
+                            time.sleep(0.05)
+                            message_placeholder.markdown(full_response)
+                        full_response += "\n"
+                    message_placeholder.markdown(response)
+
+        st.session_state.messages.append(
+            {"role": "assistant", "content": response}
+        )
 
 if __name__ == "__main__":
     init_streamlit()
